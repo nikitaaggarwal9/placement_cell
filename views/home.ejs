@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<div id="home-container">
+    <% if(locals.user) { %>
+        <input type="submit" placeholder="Manage Students">
+        <input type="submit" placeholder="Manage Interviews">
+        
+        <li><a href="users/sign-in">Sign In</a></li>
+        <li><a href="users/sign-up">Sign Up</a></li>
+    <% } %>
+    
+</div>
+<script src="/js/home_posts.js"></script>
