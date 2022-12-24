@@ -14,7 +14,7 @@ const studentSchema = new mongoose.Schema({
         required: true
     }, 
     status: {
-        type: Boolean, 
+        type: String, 
         required: true
     },
     college: {
@@ -24,15 +24,15 @@ const studentSchema = new mongoose.Schema({
     scores: {
         dsa: {
             type: String,
-            required: true
+            // required: true
         },
         web: {
             type: String,
-            required: true
+            // required: true
         },
         react: {
             type: String,
-            required: true
+            // required: true
         }
     },
     // include the array of ids of all the interview in the student schema itself
@@ -42,7 +42,7 @@ const studentSchema = new mongoose.Schema({
             ref: 'Interview', 
             result: {
                 type: String,
-                reuired: true
+                default: 'On Hold'
             }
         },
     ], 

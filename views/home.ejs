@@ -2,12 +2,12 @@
 
 <div id="home-container">
     <% if(locals.user) { %>
-        <input type="submit" placeholder="Manage Students">
-        <input type="submit" placeholder="Manage Interviews">
+        <!-- <input type="submit" placeholder="Manage Students">
+        <input type="submit" placeholder="Manage Interviews"> -->
         
-        <li><a href="users/sign-in">Sign In</a></li>
-        <li><a href="users/sign-up">Sign Up</a></li>
+        <li><a href="/students/">Manage Students</a></li>
+        <li><a href="/interviews/">Manage Interviews</a></li>
+        
     <% } %>
     
 </div>
-<script src="/js/home_posts.js"></script>

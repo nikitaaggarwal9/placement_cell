@@ -3,25 +3,30 @@ const Student = require('../models/student');
 
 module.exports.create = async function(req, res) {
     try {
+        console.log('6', req.body);
         let student = await Student.create({
-            content: req.body.content,
-            user: req.user._id
+            name: req.body.name,
+            batch: req.body.batch,
+            status: req.body.status,
+            college: req.body.college
         });
-        
-        if(req.xhr) {
-            return res.status(200).json({
-                data: {
-                    student: student
-                },
-                message: "Student created!"
-            });
-        }
+        console.log(student);
 
-        req.flash('success', 'Student Added!');
+        // if(req.xhr) {
+        //     return res.status(200).json({
+        //         data: {
+        //             student: student
+        //         },
+        //         message: "Student created!"
+        //     });
+        // }
+
+        // req.flash('success', 'Student Added!');
         return res.redirect('back');
+        // return;
     } catch (error) {
-        req.flash('error', error);
-
+        // req.flash('error', error);
+        console.log('error');
         return;
     }
 }
@@ -56,4 +61,14 @@ module.exports.destroy = async function(req, res) {
         console.log('Error', error);
         return;
     }
+}
+
+
+module.exports.show = async function (req, res) {
+    let students = await Student.find({});
+    res.render('student', {
+        title: 'Hello Students',
+        students: students
+    })
+    // return res.redirect('/students');
 }

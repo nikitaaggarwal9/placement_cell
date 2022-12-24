@@ -1,32 +1,37 @@
-<section id="feed-studensts">
-    <h4>Posts</h4>
+<link rel="stylesheet" href="/css/student.css">
 
-    <% if (locals.user) { %>
-        <form action="/studensts/create" id="new-post-form" method="POST">
-            <textarea name="content" cols="30" rows="3" required></textarea>
-            <input type="submit" value="Post">
-        </form>
+<section id="feed-students">
+    <h4><%= title %></h4>
+    
+        <div class="student-form">
+            <form action="/students/create" id="new-post-form" method="POST">
+                <input type="text" name="name" cols="30" rows="1" placeholder="Enter Name" required>
+                <input type="text" name="batch" cols="30" rows="1" placeholder="Enter Batch" required>
+                <input type="text" name="college" cols="30" rows="1" placeholder="Enter College" required>
+    
+                <select name="status" id="status">
+                    <option value="placed">Placed</option>
+                    <option value="not-placed">Not Placed</option>
+                </select>
+                <input type="submit" value="Add New Student">
+            </form>
+        </div>
 
-        <div id="students-list-container">
+        <div class="student-list">
             <ul>
                 <% for(student of students) { %>
                     <li>
-                        <%- stuent.name %>
+                        <div class="student">
+                            <div class="st-name"><%= student.name %></div>
+                            <div class="st-batch"><%= student.batch %></div>
+                            <div class="st-college"><%= student.college %></div>
+                            <div class="st-status"><%= student.status %></div>
+                        </div>
                     </li>
                 <% } %>
             </ul>
         </div>
-    <% } %>
+  
 
-            
 </section>
 
-
-<section id="user-friends">
-    <h4>Friends</h4>
-    <% for(u of all_users) { %> 
-        <p>
-            <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
-        </p>
-    <% } %>
-</section>

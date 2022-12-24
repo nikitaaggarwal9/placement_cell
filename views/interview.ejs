@@ -1,0 +1,29 @@
+
+
+<section id="feed-interviews">
+    <h4><%= title %></h4>
+    
+        <div class="interview-form">
+            <form action="/interviews/create" id="new-post-form" method="POST">
+                <input type="text" name="name" cols="40" rows="1" placeholder="Enter Company Name" required>
+                <input type="date" name="date" cols="30" rows="1" placeholder="Interview Date" required>
+                <input type="submit" value="Add New Interview">
+            </form>
+        </div>
+
+        <div class="interview-list">
+            <ul>
+                <% for(interview of interviews) { %>
+                    <li>
+                        <div class="interview">
+                            <div class="st-name"><%= interview.name %></div>
+                            <div class="st-batch"><%= interview.date %></div>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+  
+
+</section>
+

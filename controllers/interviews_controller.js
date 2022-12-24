@@ -3,19 +3,20 @@ const Interview = require('../models/interview');
 
 module.exports.create = async function(req, res) {
     try {
+        console.log(req.body);
         let interview = await Interview.create({
-            content: req.body.content,
-            user: req.user._id
+            name: req.body.name,
+            date: req.body.date
         });
-        
-        if(req.xhr) {
-            return res.status(200).json({
-                data: {
-                    interview: interview
-                },
-                message: "Interview created!"
-            });
-        }
+        console.log(interview);
+        // if(req.xhr) {
+        //     return res.status(200).json({
+        //         data: {
+        //             interview: interview
+        //         },
+        //         message: "Interview created!"
+        //     });
+        // }
 
         req.flash('success', 'Interview published');
         return res.redirect('back');
@@ -56,4 +57,14 @@ module.exports.destroy = async function(req, res) {
         console.log('Error', error);
         return;
     }
+}
+
+
+module.exports.show = async function (req, res) {
+    let interviews = await Interview.find({});
+    res.render('interview', {
+        title: 'Hello Interviews',
+        interviews: interviews
+    })
+    // return res.redirect('/students');
 }

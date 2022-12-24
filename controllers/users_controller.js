@@ -2,15 +2,6 @@ const User = require('../models/user')
 const fs = require('fs');
 const path = require('path');
 
-// module.exports.profile = function (req, res) {
-//     User.findById(req.params.id, function(err, user) {
-//         return res.render('user_profile', {
-//             title: "User Profile",
-//             profile_user: user
-//         });
-//     });
-// }
-
 
 // module.exports.update = async function(req, res) {
 //     if(req.user.id == req.params.id) {
@@ -57,11 +48,11 @@ const path = require('path');
 
 // render the sign up page
 module.exports.signUp = function(req, res) {
-    if(req.isAuthenticated()) {
-        return res.redirect('/users/profile');
-    };
+    // if(req.isAuthenticated()) {
+    //     return res.redirect('/users/profile');
+    // };
 
-    return res.render('user_sign_up', {
+    return res.render('sign_up', {
         title: 'Codeial | Sign Up'
     })
 }
@@ -69,11 +60,11 @@ module.exports.signUp = function(req, res) {
 
 // render the sign in page
 module.exports.signIn = function(req, res) {
-    if(req.isAuthenticated()) {
-        return res.redirect('/users/profile');
-    };
+    // if(req.isAuthenticated()) {
+    //     return res.redirect('/users/profile');
+    // };
 
-    return res.render('user_sign_in', {
+    return res.render('sign_in', {
         title: 'Codeial | Sign In'
     })
 }

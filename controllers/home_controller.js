@@ -39,25 +39,28 @@ const User = require('../models/user');
 
 module.exports.home = async function(req, res) {
     try {
-        let students = await Student.find({})
-        .sort('-createdAt')
-        .populate('user')
-        .populate({
-            path: 'interviews',
-            populate: {
-                path: 'user'
-            }
-        });
+        // let students = await Student.find({})
+        // .sort('-createdAt')
+        // .populate('user')
+        // .populate({
+        //     path: 'interviews',
+        //     populate: {
+        //         path: 'user'
+        //     }
+        // });
         
-        let users = await User.find({});
+        // let users = await User.find({});
         
         return res.render('home', {
             title: "Home",
-            students: students,
-            all_users: users
         });
+        return;
     } catch (error) {
         console.log("Error", error);
         return;
     }
+}
+
+module.exports.student = function (req, res) {
+    return res.render('/students');
 }

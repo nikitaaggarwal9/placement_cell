@@ -1,0 +1,19 @@
+#feed-students {
+    display: flex;
+    flex-direction: column;
+    h4 {
+        color: red;
+    }
+    .student-form {
+        height:  2rem;
+        background-color: yellow;
+    }
+    .student-list {
+        display: flex;
+        flex-direction: column;
+        .student {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
