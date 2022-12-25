@@ -1,0 +1,24 @@
+<h1><%= title %><%= interview.name %></h1>
+
+<div class="student-list">
+    <ul>
+        <% for(student of allocated_students) { %>
+            <li>
+                <div class="student">
+                    <div class="st-name"><%= student.name %></div>
+                    <div class="st-result">
+                        <form action="/students/update/<%= student._id %>/<%= interview._id %>" method="POST" >
+                            <select name="result">
+                                <option value="On Hold">On Hold</option>
+                                <option value="Didn't Attempt">Didn't Attempt</option>
+                                <option value="Pass">Pass</option>
+                                <option value="Fail">Fail</option>
+                            </select>
+                            <input type="submit" value="Update Result">
+                        </form>
+                    </div>
+                </div>
+            </li>
+        <% } %>
+    </ul>
+</div>

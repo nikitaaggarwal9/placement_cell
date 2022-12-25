@@ -18,6 +18,8 @@
                         <div class="interview">
                             <div class="st-name"><%= interview.name %></div>
                             <div class="st-batch"><%= interview.date %></div>
+                            <a href="interviews/allocate/<%= interview._id %>">Edit Students List</a>
+                            <a href="interviews/result/<%= interview._id %>">Update Results</a>
                         </div>
                     </li>
                 <% } %>

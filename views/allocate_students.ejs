@@ -1,0 +1,40 @@
+<h1><%= interview.name %></h1>
+
+<section id="students">Allocated Students
+<div class="allocated-student-list">
+    <ul>
+        <% for(student of allocated_students) { %>
+            <li>
+                <div class="student">
+                    <div class="st-name"><%= student.name %></div>
+                    <div class="st-add">
+                        <form action="/interviews/remove-student/<%= student._id %>/<%= interview._id %>" method="POST" enctype="multipart/form-data">
+                            <input type="submit" value="Remove">                                                               
+                        </form>
+                    </div>
+                </div>
+            </li>
+        <% } %>
+    </ul>
+</div>
+
+
+<div class="remaining-student-list">
+    <ul>
+        <% for(student of remaining_students) { %>
+            <li>
+                <div class="student">
+                    <div class="st-name"><%= student.name %></div>
+                    <div class="st-add">
+                        <form action="/interviews/add-student/<%= student._id %>/<%= interview._id %>" method="POST" enctype="multipart/form-data">
+                            <input type="submit" value="Add">                                                               
+                        </form>
+                    </div>
+                </div>
+            </li>
+        <% } %>
+    </ul>
+</div>
+
+
+</section>

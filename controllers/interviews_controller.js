@@ -1,28 +1,17 @@
 const Interview = require('../models/interview');
-// const Comment = require('../models/comment');
+const Student = require('../models/student');
 
 module.exports.create = async function(req, res) {
     try {
-        console.log(req.body);
-        let interview = await Interview.create({
+        await Interview.create({
             name: req.body.name,
             date: req.body.date
         });
-        console.log(interview);
-        // if(req.xhr) {
-        //     return res.status(200).json({
-        //         data: {
-        //             interview: interview
-        //         },
-        //         message: "Interview created!"
-        //     });
-        // }
 
         req.flash('success', 'Interview published');
         return res.redirect('back');
     } catch (error) {
         req.flash('error', error);
-
         return;
     }
 }
@@ -30,27 +19,13 @@ module.exports.create = async function(req, res) {
 module.exports.destroy = async function(req, res) {
     try {
         let interview = await Interview.findById(req.params.id);
-        // .id means converting the object id into string
         if(interview.user == interview.user.id) {
             interview.remove();
-    
-            // delete interview from students db
-            // await Comment.deleteMany({post: req.params.id});
-
-            if(req.xhr) {
-                return res.status(200).json({
-                    data: {
-                        interview_id: req.params.id
-                    },
-                    message: "Interview deleted!"
-                })
-            }
 
             req.flash('success', 'Interview deleted!');
             return res.redirect('back');
         } else {
             req.flash('error', 'You cannot delete this interview!');
-
             return res.redirect('back');
         }
     } catch (error) {
@@ -66,5 +41,68 @@ module.exports.show = async function (req, res) {
         title: 'Hello Interviews',
         interviews: interviews
     })
-    // return res.redirect('/students');
+}
+
+
+module.exports.allocate = async function(req, res) {
+    let students = await Student.find({});
+    let interview = await Interview.findById(req.params.id);
+
+    let allocated_students = students.filter(student=> interview.students.includes(student._id));
+    let remaining_students = students.filter(student=> !interview.students.includes(student._id));
+
+    // console.log(allocated_students);
+    res.render('allocate_students', {
+        title: 'Add students to Interview',
+        interview: interview,
+        allocated_students: allocated_students,
+        remaining_students: remaining_students
+    })
+}
+
+
+module.exports.addStudent = async function(req, res) {
+    let interview = await Interview.findById(req.params.i_id);
+    let student = await Student.findById(req.params.s_id);
+    if(interview && student) {
+        // console.log(interview.id, student.id);
+        interview.students.push(student._id);
+        interview.save();
+
+        student.interviews.push({id: interview._id});
+        student.save();
+    }
+    res.redirect('back');
+}
+
+
+module.exports.removeStudent = async function(req, res) {
+    let interview = await Interview.findById(req.params.i_id);
+    let student = await Student.findById(req.params.s_id);
+
+    if(interview && student) {
+        interview.students = interview.students.filter(s_id=>s_id!=student.id);
+        interview.save();
+
+        student.interviews = student.interviews.filter(i_id=>i_id!=interview.id);
+        student.save();
+    }
+
+    res.redirect('back');
+}
+
+
+
+module.exports.result = async function(req, res) {
+    let students = await Student.find({});
+    let interview = await Interview.findById(req.params.id);
+
+    let allocated_students = students.filter(student=> interview.students.includes(student._id));
+
+    // console.log(allocated_students);
+    res.render('update_results', {
+        title: 'Update Students Result for ',
+        interview: interview,
+        allocated_students: allocated_students
+    })
 }
