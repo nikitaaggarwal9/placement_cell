@@ -1,31 +1,38 @@
-
-
-<section id="feed-interviews">
-    <h4><%= title %></h4>
+<link rel="stylesheet" href="/css/interview.css">
+<div id="feed-interviews">
     
         <div class="interview-form">
             <form action="/interviews/create" id="new-post-form" method="POST">
                 <input type="text" name="name" cols="40" rows="1" placeholder="Enter Company Name" required>
                 <input type="date" name="date" cols="30" rows="1" placeholder="Interview Date" required>
-                <input type="submit" value="Add New Interview">
+                <input type="submit" class="btn btn-success" value="Add New Interview">
             </form>
         </div>
 
         <div class="interview-list">
-            <ul>
-                <% for(interview of interviews) { %>
-                    <li>
-                        <div class="interview">
-                            <div class="st-name"><%= interview.name %></div>
-                            <div class="st-batch"><%= interview.date %></div>
-                            <a href="interviews/allocate/<%= interview._id %>">Edit Students List</a>
-                            <a href="interviews/result/<%= interview._id %>">Update Results</a>
-                        </div>
-                    </li>
-                <% } %>
-            </ul>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">Company Name</th>
+                      <th scope="col">Interview Date</th>
+                      <th scope="col">Manage Students</th>
+                      <th scope="col">Remove</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    <% for(interview of interviews) { %>
+                    <tr>
+                      <th scope="row"><%= interview.name %></th>
+                      <td><%= interview.date %></td>
+                      <td><div class="list-btn"><a href="interviews/allocate/<%= interview._id %>">Update List</a></div></td>
+                      <td class="del"><a href="interviews/delete/<%= interview._id %>"><i class="fa-solid fa-trash"></i></a></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
         </div>
   
 
-</section>
+    </div>
 

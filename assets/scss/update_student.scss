@@ -1,11 +1,11 @@
-#feed-students {
+#upd-std {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .student-form {
+    .update-st-form {
         // height:  2rem;
         // background-color: yellow;
         margin-top: 2rem;
@@ -13,7 +13,7 @@
 
     .student-list {
         margin-top: 3rem;
-        width: 80%;
+        width: 60%;
         display: flex;
         flex-direction: column;
 

@@ -1,40 +1,65 @@
-<h1><%= interview.name %></h1>
+<link rel="stylesheet" href="/css/allocate_student.css">
 
-<section id="students">Allocated Students
-<div class="allocated-student-list">
-    <ul>
-        <% for(student of allocated_students) { %>
-            <li>
-                <div class="student">
-                    <div class="st-name"><%= student.name %></div>
-                    <div class="st-add">
-                        <form action="/interviews/remove-student/<%= student._id %>/<%= interview._id %>" method="POST" enctype="multipart/form-data">
-                            <input type="submit" value="Remove">                                                               
-                        </form>
-                    </div>
-                </div>
-            </li>
-        <% } %>
-    </ul>
-</div>
-
-
-<div class="remaining-student-list">
-    <ul>
-        <% for(student of remaining_students) { %>
-            <li>
-                <div class="student">
-                    <div class="st-name"><%= student.name %></div>
-                    <div class="st-add">
-                        <form action="/interviews/add-student/<%= student._id %>/<%= interview._id %>" method="POST" enctype="multipart/form-data">
-                            <input type="submit" value="Add">                                                               
-                        </form>
-                    </div>
-                </div>
-            </li>
-        <% } %>
-    </ul>
-</div>
-
+<div id="cmp-name">List for <%= interview.name %></div>
+<section id="st-lists">
+    <div class="st-list-al">
+        <table class="table"> 
+            <thead>
+                <tr>
+                  <th scope="col">Allocated</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Update Result</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+            <th></th>
+            <tbody>
+                <% for(student of allocated_students) { %>
+                <tr>
+                <td scope="row"><%= student.name %></td>
+                <td ><% for(i of student.interviews) { %> 
+                    <% if(i.id == interview.id) { %>
+                        <%= i.result %>
+                    <%} %>
+                <%} %></td>
+                <td>
+                    <form action="/students/update_res/<%= student._id %>/<%= interview._id %>" method="POST" >
+                        <select name="result">
+                            <option value="On Hold">On Hold</option>
+                            <option value="Didn't Attempt">Didn't Attempt</option>
+                            <option value="Pass">Pass</option>
+                            <option value="Fail">Fail</option>
+                        </select>
+                        <input type="submit" class="btn btn-info" value="Update Result">
+                    </form>
+                </td>
+                <td><a class="rem-st" href="/interviews/remove_student/<%= student._id %>/<%= interview._id %>"><i class="fa-solid fa-trash"></i></a></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="st-list-rm">
+        <table class="table"> 
+            <thead>
+                <tr>
+                  <th scope="col">Remaining</th>
+                  <th scope="col">Add</th>
+                </tr>
+              </thead>
+            <tbody>
+                <% for(student of remaining_students) { %>
+                <tr>
+                <td scope="row"><%= student.name %></td>
+                <td><form action="/interviews/add_student/<%= student._id %>/<%= interview._id %>" method="POST" enctype="multipart/form-data">
+                    <input type="submit" value="Add">                                                               
+                </form></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    
 
 </section>

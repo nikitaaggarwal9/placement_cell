@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/css/student.css">
+<link rel="stylesheet" href="/css/update_student.css">
 
-<section id="feed-students">
+<section id="upd-std">
     
-        <div class="student-form">
-            <form action="/students/create" id="new-post-form" method="POST">
+        <div class="update-st-form">
+            <form action="/students/update_data/<%=student._id%>" id="new-post-form" method="POST">
                 <input type="text" name="name" cols="30" rows="1" placeholder="Enter Name" required>
                 <input type="text" name="batch" cols="30" rows="1" placeholder="Enter Batch" required>
                 <input type="text" name="college" cols="30" rows="1" placeholder="Enter College" required>
@@ -12,7 +12,7 @@
                     <option value="Not Placed">Not Placed</option>
                     <option value="Placed">Placed</option>
                 </select>
-                <input type="submit" class="btn btn-success" value="Add New Student">
+                <input type="submit" class="btn btn-info" value="Update">
             </form>
         </div>
 
@@ -24,22 +24,15 @@
                     <th scope="col">Batch</th>
                     <th scope="col">College</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
-                    <% for(student of students) { %>
                     <tr>
                       <th scope="row"><%= student.name %></th>
                       <td><%= student.batch %></td>
                       <td><%= student.college %></td>
                       <td><%= student.status %></td>
-                      <td><div class="up-st-btn"><a href="students/update/<%= student._id %>">Update</a></div></td>
-                      <td class="del"><a href="students/delete/<%= student._id %>"><i class="fa-solid fa-trash"></i></a></td>
-                      <td></td>
                     </tr>
-                    <% } %>
                 </tbody>
               </table>
 

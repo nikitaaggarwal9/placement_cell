@@ -1,0 +1,42 @@
+#feed-interviews {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  #feed-interviews .interview-form {
+    width: 60%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+  #feed-interviews .interview-list {
+    width: 80%;
+    margin-top: 3rem; }
+    #feed-interviews .interview-list table {
+      width: 100%; }
+      #feed-interviews .interview-list table tr {
+        height: 3rem; }
+        #feed-interviews .interview-list table tr .list-btn,
+        #feed-interviews .interview-list table tr .result-btn {
+          background-color: #e4ee20;
+          height: 2rem;
+          width: 9rem;
+          border-radius: 4px;
+          margin-right: 2rem; }
+          #feed-interviews .interview-list table tr .list-btn a,
+          #feed-interviews .interview-list table tr .result-btn a {
+            height: 100%;
+            width: 100%;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center; }
+        #feed-interviews .interview-list table tr .list-btn:hover,
+        #feed-interviews .interview-list table tr .result-btn:hover {
+          background-color: #cdc608; }
+        #feed-interviews .interview-list table tr .del {
+          font-size: 1.2rem; }
+          #feed-interviews .interview-list table tr .del a {
+            color: #fc2222; }

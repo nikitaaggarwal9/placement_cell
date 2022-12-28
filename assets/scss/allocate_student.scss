@@ -1,0 +1,46 @@
+#cmp-name {
+    height: 3rem;
+    width: 30%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    margin-top: 1rem;
+    color: white;
+    font-size: 1.4rem;
+    font-family: sans-serif;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(87, 80, 83);
+}
+
+
+#st-lists {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .st-list-al {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        table {
+            height: auto;
+            width: 80%;
+            a {
+                font-size: 1.2rem; 
+                color: rgb(252, 34, 34);
+            }
+        }
+    }
+    .st-list-rm {
+        width: 30%;
+        table {
+            height: auto;
+            width: 80%;
+            
+        }
+    }
+    
+}
+// <td><div class="result-btn"><a href="interviews/result/<%= interview._id %>">Update Results</a></div></td>

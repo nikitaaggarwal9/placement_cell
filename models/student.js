@@ -34,10 +34,12 @@ const studentSchema = new mongoose.Schema(
     },
     interviews: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+        },
         result: {
           type: String,
-          required: true
+          // required: true
         },
       },
     ],

@@ -1,23 +1,23 @@
-#feed-students {
+#upd-std {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; }
-  #feed-students .student-form {
+  #upd-std .update-st-form {
     margin-top: 2rem; }
-  #feed-students .student-list {
+  #upd-std .student-list {
     margin-top: 3rem;
-    width: 80%;
+    width: 60%;
     display: flex;
     flex-direction: column; }
-    #feed-students .student-list .up-st-btn {
+    #upd-std .student-list .up-st-btn {
       background-color: #e4ee20;
       height: 2rem;
       width: 9rem;
       border-radius: 4px;
       margin-right: 2rem; }
-      #feed-students .student-list .up-st-btn a {
+      #upd-std .student-list .up-st-btn a {
         height: 100%;
         width: 100%;
         text-decoration: none;
@@ -25,9 +25,9 @@
         display: flex;
         justify-content: center;
         align-items: center; }
-    #feed-students .student-list .up-st-btn:hover {
+    #upd-std .student-list .up-st-btn:hover {
       background-color: #cdc608; }
-    #feed-students .student-list .del {
+    #upd-std .student-list .del {
       font-size: 1.2rem; }
-      #feed-students .student-list .del a {
+      #upd-std .student-list .del a {
         color: #fc2222; }

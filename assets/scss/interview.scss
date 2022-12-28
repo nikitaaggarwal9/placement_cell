@@ -1,0 +1,69 @@
+#feed-interviews {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .interview-form {
+        width: 60%;
+        margin-top: 2rem;
+        display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+    .interview-list {
+        width: 80%;
+        margin-top: 3rem;
+        table {
+            width: 100%;
+            tr {
+                height: 3rem;
+        
+                .list-btn,
+                .result-btn {
+                    background-color: rgb(228, 238, 32);
+                    height: 2rem;
+                    width: 9rem;
+                    border-radius: 4px;
+                    margin-right: 2rem;
+        
+                    a {
+                        height: 100%;
+                        width: 100%;
+                        text-decoration: none;
+                        color: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+        
+                .list-btn:hover,
+                .result-btn:hover {
+                    background-color: rgb(205, 198, 8);
+                }
+        
+                .del {
+                    font-size: 1.2rem;
+                    
+                    a {
+                        color: rgb(252, 34, 34);
+                    }
+                }
+            }
+    }
+    
+    
+    }
+
+    
+    // .result-btn {
+    //     background-color: gray;
+    //     a{
+    //         text-decoration: none;
+    //         color: white;
+    //     }
+    // }
+}
