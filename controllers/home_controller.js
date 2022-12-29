@@ -1,11 +1,6 @@
-const Student = require('../models/student');
-const User = require('../models/user');
-
 module.exports.home = async function(req, res) {
     try {    
-        return res.render('home', {
-            title: "Home",
-        });
+        return res.render('home');
     } catch (error) {
         console.log("Error", error);
         return;

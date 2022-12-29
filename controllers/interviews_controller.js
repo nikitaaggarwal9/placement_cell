@@ -57,7 +57,6 @@ module.exports.allocate = async function(req, res) {
     let allocated_students = students.filter(student=> interview.students.includes(student._id));
     let remaining_students = students.filter(student=> !interview.students.includes(student._id));
 
-    // console.log(allocated_students);
     res.render('allocate_students', {
         title: 'Add students to Interview',
 
@@ -71,13 +70,10 @@ module.exports.allocate = async function(req, res) {
 module.exports.addStudent = async function(req, res) {
     let interview = await Interview.findById(req.params.i_id);
     let student = await Student.findById(req.params.s_id);
-    // console.log(interview, student);
     if(interview && student) {
-        // console.log(interview.id, student.id);
         interview.students.push(student.id);
         interview.save();
 
-        // student.interviews.push(interview._id);
         student.interviews.push({id: interview._id, result: 'On Hold'});
         student.save();
     }
@@ -93,7 +89,6 @@ module.exports.removeStudent = async function(req, res) {
         interview.students = interview.students.filter(s_id=>s_id!=student.id);
         interview.save();
 
-        // student.interviews = student.interviews.filter(i=>i_id!=interview.id);
         student.interviews = student.interviews.filter(i=>i.id!=interview.id);
         student.save();
     }
@@ -109,7 +104,6 @@ module.exports.result = async function(req, res) {
 
     let allocated_students = students.filter(student=> interview.students.includes(student._id));
 
-    // console.log(allocated_students);
     res.render('update_results', {
         title: 'Update Students Result for ',
         interview: interview,

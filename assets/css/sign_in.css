@@ -1,0 +1,16 @@
+#sign-in-main {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #sign-in-main #sign-in-box {
+    height: 40%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; }
+    #sign-in-main #sign-in-box #sign-in-heading {
+      color: gray;
+      font-size: 3rem; }

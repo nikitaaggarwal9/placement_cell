@@ -10,7 +10,6 @@ module.exports.create = async function(req, res) {
             status: req.body.status,
             college: req.body.college
         });
-        // console.log(student);
         
         if(student) {
             req.flash('success', 'Student added!');
@@ -57,7 +56,6 @@ module.exports.student = async function (req, res) {
     res.render('student', {
         students: students
     })
-    // return res.redirect('/students');
 }
 
 module.exports.update = async function(req, res) {
@@ -80,7 +78,6 @@ module.exports.update = async function(req, res) {
 
 module.exports.updateData = async function (req, res) {
     try {
-
         let student = await Student.findById(req.params.id);
         if(student) {
             student.name = req.body.name;
@@ -104,18 +101,11 @@ module.exports.updateData = async function (req, res) {
 
 module.exports.updateRes = async function (req, res) {
     try {
-
         let student = await Student.findById(req.params.s_id);
         let interview = await Interview.findById(req.params.i_id);
-        // console.log(80,student, interview);
-
-        // student.interviews.forEach( )
-
-        let idx = student.interviews.findIndex(inter=>inter.id == interview.id);
-        // console.log(idx);
-        // console.log(idx, req.body, req.body.result, student.interviews[idx].result);
+        
+        let idx = student.interviews.findIndex(interview=>interview.id == interview.id);
         student.interviews[idx].result = req.body.result;
-        // console.log(student.interviews[idx].result);
 
         student.save();
         return res.redirect('back');

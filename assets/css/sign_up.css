@@ -1,0 +1,16 @@
+#sign-up-main {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #sign-up-main #sign-up-box {
+    height: 40%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; }
+    #sign-up-main #sign-up-box #sign-up-heading {
+      color: gray;
+      font-size: 3rem; }
