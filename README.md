@@ -1,6 +1,6 @@
 This app is for a team, which manages students and companies, in order to to arrange interviews between them.
 
-To run this project on your systemd:
+To run this project on your system:
 -> clone the project
 -> enter the root of the directory 
 -> install node packages: npm install
