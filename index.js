@@ -5,15 +5,6 @@ const expressLayouts = require('express-ejs-layouts');
 const dotenv = require('dotenv').config();
 const db = require('./config/mongoose');
 
-// app.get('/', function(req, res) {
-//     return res.send(`<h1> Hello</h1>`);
-// })
-
-// app.listen(port, function(err) {
-//     if(err) {console.log(err); return;}
-//     console.log(`Server is running on port ${port}`);
-// })
-
 const cookieParser = require('cookie-parser');
 
 // user for session cookie
