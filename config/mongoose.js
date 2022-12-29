@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
+// const DB_URL = 'mongodb+srv://Nikita:Nikita@cluster0.tdrptqt.mongodb.net/?retryWrites=true&w=majority'
+ 
+// mongoose.connect(`${process.env.DB_URL}`);
+mongoose.connect(`${process.env.DB_URL}`, {
 
-mongoose.connect('mongodb://localhost/placement_cell');
+    useUnifiedTopology: true,
+
+    useNewUrlParser: true,
+
+}).then(console.log('connect sucess to mongodb'))
 
 const db = mongoose.connection;
 

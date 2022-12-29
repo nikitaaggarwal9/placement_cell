@@ -42,71 +42,95 @@ module.exports.delete = async function(req, res) {
 
 
 module.exports.show = async function (req, res) {
-    let interviews = await Interview.find({}).sort('-createdAt');
-    res.render('interview', {
-        title: 'Hello Interviews',
-        interviews: interviews
-    })
+    try {
+        let interviews = await Interview.find({}).sort('-createdAt');
+        res.render('interview', {
+            title: 'Hello Interviews',
+            interviews: interviews
+        })
+    } catch (error) {
+        console.log(error);
+        return;
+    }
 }
 
 
 module.exports.allocate = async function(req, res) {
-    let students = await Student.find({});
-    let interview = await Interview.findById(req.params.id);
+    try {
+        let students = await Student.find({});
+        let interview = await Interview.findById(req.params.id);
 
-    let allocated_students = students.filter(student=> interview.students.includes(student._id));
-    let remaining_students = students.filter(student=> !interview.students.includes(student._id));
+        let allocated_students = students.filter(student=> interview.students.includes(student._id));
+        let remaining_students = students.filter(student=> !interview.students.includes(student._id));
 
-    res.render('allocate_students', {
-        title: 'Add students to Interview',
+        res.render('allocate_students', {
+            title: 'Add students to Interview',
 
-        interview: interview,
-        allocated_students: allocated_students,
-        remaining_students: remaining_students
-    })
+            interview: interview,
+            allocated_students: allocated_students,
+            remaining_students: remaining_students
+        })
+    } catch(error) {
+        console.log(error);
+        return;
+    }
 }
 
 
 module.exports.addStudent = async function(req, res) {
-    let interview = await Interview.findById(req.params.i_id);
-    let student = await Student.findById(req.params.s_id);
-    if(interview && student) {
-        interview.students.push(student.id);
-        interview.save();
+    try {
+        let interview = await Interview.findById(req.params.i_id);
+        let student = await Student.findById(req.params.s_id);
+        if(interview && student) {
+            interview.students.push(student.id);
+            interview.save();
 
-        student.interviews.push({id: interview._id, result: 'On Hold'});
-        student.save();
+            student.interviews.push({id: interview._id, result: 'On Hold'});
+            student.save();
+        }
+        res.redirect('back');
+    } catch (error) {
+        console.log(error);
+        return;
     }
-    res.redirect('back');
 }
 
 
 module.exports.removeStudent = async function(req, res) {
-    let interview = await Interview.findById(req.params.i_id);
-    let student = await Student.findById(req.params.s_id);
+    try {
+        let interview = await Interview.findById(req.params.i_id);
+        let student = await Student.findById(req.params.s_id);
 
-    if(interview && student) {
-        interview.students = interview.students.filter(s_id=>s_id!=student.id);
-        interview.save();
+        if(interview && student) {
+            interview.students = interview.students.filter(s_id=>s_id!=student.id);
+            interview.save();
 
-        student.interviews = student.interviews.filter(i=>i.id!=interview.id);
-        student.save();
+            student.interviews = student.interviews.filter(i=>i.id!=interview.id);
+            student.save();
+        }
+
+        res.redirect('back');
+    } catch (error) {
+        console.log(error);
     }
-
-    res.redirect('back');
 }
 
 
 
 module.exports.result = async function(req, res) {
-    let students = await Student.find({});
-    let interview = await Interview.findById(req.params.id);
+    try {
+        let students = await Student.find({});
+        let interview = await Interview.findById(req.params.id);
 
-    let allocated_students = students.filter(student=> interview.students.includes(student._id));
+        let allocated_students = students.filter(student=> interview.students.includes(student._id));
 
-    res.render('update_results', {
-        title: 'Update Students Result for ',
-        interview: interview,
-        allocated_students: allocated_students
-    })
+        res.render('update_results', {
+            title: 'Update Students Result for ',
+            interview: interview,
+            allocated_students: allocated_students
+        })
+    } catch (error) {
+        console.log(error);
+        return;
+    }
 }
