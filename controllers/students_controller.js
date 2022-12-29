@@ -30,14 +30,24 @@ module.exports.delete = async function (req, res) {
     let student = await Student.findById(req.params.id);
     if (student) {
       let interviews = student.interviews;
-      console.log(interviews, interviews.length);
+      
+      // console.log(interviews, interviews.length);
+      // interviews.forEach((inter) => async function() {
+      //   let interview = await Interview.findById(inter.iid);
+      //   console.log(interview);
+      //   interview.students = interview.students.filter(
+      //     (s_id) => s_id != req.params.id
+      //   );
+      //   await interview.save();
+      // })
 
       for (inter of interviews) {
         let interview = await Interview.findById(inter.iid);
+        console.log(interview);
         interview.students = interview.students.filter(
           (s_id) => s_id != req.params.id
         );
-        interview.save();
+        await interview.save();
       }
 
       await student.remove();
@@ -158,9 +168,9 @@ module.exports.download = async function (req, res) {
           batch: student.batch,
           college: student.college,
           status: student.status,
-          react: student.react,
-          dsa: student.dsa,
-          webd: student.webd,
+          react: student.scores.react,
+          dsa: student.scores.dsa,
+          webd: student.scores.web,
           c_name: interview.name,
           date: interview.date,
           result: student.interviews[idx].result
