@@ -82,10 +82,12 @@ module.exports.addStudent = async function(req, res) {
         let interview = await Interview.findById(req.params.i_id);
         let student = await Student.findById(req.params.s_id);
         if(interview && student) {
-            interview.students.push(student.id);
+            interview.students.push(req.params.s_id);
+            console.log(interview.students);
+
             interview.save();
 
-            student.interviews.push({id: interview._id, result: 'On Hold'});
+            student.interviews.push({iid: req.params.i_id, result: 'On Hold'});
             student.save();
         }
         res.redirect('back');
@@ -105,7 +107,7 @@ module.exports.removeStudent = async function(req, res) {
             interview.students = interview.students.filter(s_id=>s_id!=student.id);
             interview.save();
 
-            student.interviews = student.interviews.filter(i=>i.id!=interview.id);
+            student.interviews = student.interviews.filter(i=>i.iid!=interview.id);
             student.save();
         }
 

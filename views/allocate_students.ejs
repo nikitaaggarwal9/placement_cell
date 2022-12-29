@@ -18,7 +18,7 @@
                 <tr>
                 <td scope="row"><%= student.name %></td>
                 <td ><% for(i of student.interviews) { %> 
-                    <% if(i.id == interview.id) { %>
+                    <% if(i.iid == interview.id) { %>
                         <%= i.result %>
                     <%} %>
                 <%} %></td>

@@ -16,30 +16,25 @@ const studentSchema = new mongoose.Schema(
     },
     college: {
       type: String,
-    //   required: true,
     },
     scores: {
       dsa: {
         type: String,
-        // required: true
       },
       web: {
         type: String,
-        // required: true
       },
       react: {
         type: String,
-        // required: true
       },
     },
     interviews: [
       {
-        id: {
+        iid: {
           type: mongoose.Schema.Types.ObjectId,
         },
         result: {
           type: String,
-          // required: true
         },
       },
     ],
