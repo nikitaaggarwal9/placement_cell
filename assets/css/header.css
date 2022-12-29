@@ -33,3 +33,6 @@ header {
       header ul li a {
         color: #f1eded;
         text-decoration: none; }
+      header ul li a:hover {
+        color: white;
+        font-weight: 500; }

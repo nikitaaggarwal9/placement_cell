@@ -1,6 +1,8 @@
 const Student = require("../models/student");
 const Interview = require("../models/interview");
 
+const excelJS = require("exceljs");
+
 module.exports.create = async function (req, res) {
   try {
     let student = await Student.create({
@@ -32,7 +34,9 @@ module.exports.delete = async function (req, res) {
 
       for (inter of interviews) {
         let interview = await Interview.findById(inter.iid);
-        interview.students = interview.students.filter((s_id) => s_id != req.params.id);
+        interview.students = interview.students.filter(
+          (s_id) => s_id != req.params.id
+        );
         interview.save();
       }
 
@@ -114,6 +118,74 @@ module.exports.updateRes = async function (req, res) {
     return res.redirect("back");
   } catch (err) {
     req.flash("error", err);
+    return;
+  }
+};
+
+module.exports.download = async function (req, res) {
+  try {
+    const workbook = new excelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Student Data");
+
+    worksheet.columns = [
+      { header: "S.No.", key: "sno" },
+      { header: "U.Id", key: "uid" },
+      { header: "Name", key: "name" },
+      { header: "Batch", key: "batch" },
+      { header: "College", key: "college" },
+      { header: "Status", key: "status" },
+      { header: "React Score", key: "react" },
+      { header: "DSA Score", key: "dsa" },
+      { header: "WebD Score", key: "webd" },
+      { header: "Company Name", key: "c_name" },
+      { header: "Company Date", key: "date" },
+      {header: "Result", key:"result" },
+    ];
+
+    let counter = 1;
+    const interviews = await Interview.find({}).populate("students");
+
+    interviews.forEach((interview) => {
+      let int_students = interview.students;
+
+      int_students.forEach((student) => {
+        let idx = student.interviews.findIndex((inter) => (inter.iid == interview.id));
+    
+        worksheet.addRow({
+          sno: counter,
+          uid: student.id,
+          name: student.name,
+          batch: student.batch,
+          college: student.college,
+          status: student.status,
+          react: student.react,
+          dsa: student.dsa,
+          webd: student.webd,
+          c_name: interview.name,
+          date: interview.date,
+          result: student.interviews[idx].result
+        });
+        counter++;
+          
+        });
+      });
+
+    worksheet.getRow(1).eachCell((cell) => {
+      cell.font = { bold: true };
+    });
+
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheatml.sheet"
+    );
+
+    res.setHeader("Content-Disposition", `attachment; filename=users.xlsx`);
+
+    return workbook.xlsx.write(res).then(() => {
+      res.status(200);
+    });
+  } catch (err) {
+    console.log("Error", err);
     return;
   }
 };

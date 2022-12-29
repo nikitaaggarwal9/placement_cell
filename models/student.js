@@ -19,13 +19,16 @@ const studentSchema = new mongoose.Schema(
     },
     scores: {
       dsa: {
-        type: String,
+        type: Number,
+        default: 0
       },
       web: {
-        type: String,
+        type: Number,
+        default: 0
       },
       react: {
-        type: String,
+        type: Number,
+        default: 0
       },
     },
     interviews: [

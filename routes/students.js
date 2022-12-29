@@ -6,6 +6,7 @@ const studentsController = require('../controllers/students_controller');
 
 router.get('/', studentsController.student);
 router.post('/create', passport.checkAuthentication, studentsController.create);
+router.get('/download', passport.checkAuthentication, studentsController.download);
 router.get('/delete/:id', passport.checkAuthentication, studentsController.delete);
 router.get('/update/:id', passport.checkAuthentication, studentsController.update);
 router.post('/update_data/:id', passport.checkAuthentication, studentsController.updateData);
