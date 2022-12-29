@@ -1,4 +1,4 @@
-This app is for a team, which manages students and companies, in order to to arrange interviews between both of them.
+This app is for a team, which manages students and companies, in order to to arrange interviews them.
 
 To run this project on your systemd:
 -> clone the project
